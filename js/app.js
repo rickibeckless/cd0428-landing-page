@@ -50,14 +50,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add class 'active' to section when near top of viewport
 
     window.addEventListener('scroll', function() {
-        let fromTop = window.scrollY;
-
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 400;
-            const sectionHeight = section.offsetHeight;
+            const rect = section.getBoundingClientRect();
             const listItem = document.querySelector(`a[href="#${section.id}"]`);
     
-            if (fromTop >= sectionTop && fromTop < sectionTop + sectionHeight) {
+            if (rect.top <= 200 && rect.bottom >= 200) {
                 section.classList.add('active-section');
                 listItem.classList.add('active');
                 listItem.classList.add('active-section-background');
